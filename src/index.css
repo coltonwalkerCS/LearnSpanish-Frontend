@@ -1362,3 +1362,83 @@ body {
 .final-create-flash-button button:hover {
   background: #0349ae; 
 }
+
+
+/* STORY TIME PAGE */
+
+.story-time-full-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  height: 100%;
+  background: #29465B;
+}
+
+.story-time-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.gpt-select-flashcards-container {
+  width: 20%;
+  min-height: calc(100vh - 70px);
+}
+
+.gpt-text-response-container {
+  /* background: #3e596d; */
+  width: 59%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  border-right: 3px solid grey;
+  border-left: 3px solid grey;
+}
+
+.gpt-text-output-card {
+  height: 90%;
+}
+
+.input-output-response-card {
+  width: 100%;
+  background: silver;
+}
+
+.input-response-item {
+  width: 100%;
+  background: tan;
+}
+
+.output-response-item{
+  width: 100%;
+  background: grey;
+}
+.gpt-text-input-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  margin-bottom: 15px;
+}
+
+.gpt-text-input-card textarea {
+  width: 700px;
+  border: 1px solid transparent;
+  min-height: 30px;
+  font-size: 20px;
+  border-radius: 15px;
+  background: #3e596d;
+  padding-left: 15px;
+  color: white;
+  resize: none;
+  overflow: auto;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.gpt-text-input-card textarea::placeholder {
+  color: white;
+}
+
+.gpt-selected-words-container {
+  width: 20%;
+  min-height: calc(100vh - 70px);
+}
