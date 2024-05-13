@@ -22,67 +22,81 @@ function StoryTimePage() {
 
   // Handle selecting words
 
-  const text = "This is a sample text with several words to click.";
-
   const [selectedWords, setSelectedWords] = useState([]);
 
   const handleClickWord = (word) => {
-    setSelectedWords([...selectedWords, word]);
+    if (!selectedWords.includes(word)) {
+      setSelectedWords([...selectedWords, word]);
+    }
   };
+
+  const [selectedCollection, setSelectedCollection] =
+    useState("test collection");
 
   return (
     <>
       <div className="story-time-full-page">
         <div className="story-time-container">
-          <div className="gpt-select-flashcards-container">
-            select flash container
+          <div className="gpt-selection-container-words-container">
+            <div className="gpt-select-collection-container">
+              <div className="select-collection-container-header">
+                <h1>Select a Collection</h1>
+              </div>
+              <div>search</div>
+              <div className="selected-collection-card">
+                <h2>Selected collection: </h2>
+                <h2>{selectedCollection}</h2>
+              </div>
+            </div>
+            <div className="gpt-selected-words-container">
+              <div className="selected-words-header">
+                <h1>Selected Words</h1>
+              </div>
+              <div className="selected-words-list-card">
+                <ul>
+                  {selectedWords.map((word, index) => (
+                    <li className="selected-words-li" key={index}>
+                      {word}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="selected-words-add-button-card">
+                <button>Add to a Collection</button>
+                <button>Create a new Collection</button>
+              </div>
+            </div>
           </div>
           <div className="gpt-text-response-container">
             <div className="gpt-text-output-card">
-              {IOGPTRequest.inputs.map((input, index) => (
-                <div className="input-output-response-card">
-                  <div className="input-response-item">
-                    <h2 className="identifier-for-text">You: </h2>
-                    <h2 className="item-text">{input}</h2>
+              <div className="text-output-card">
+                {IOGPTRequest.inputs.map((input, index) => (
+                  <div className="input-output-response-card" key={index}>
+                    <div className="input-response-item">
+                      <h2 className="identifier-for-text">You: </h2>
+                      <h2 className="item-text">{input}</h2>
+                    </div>
+                    <div className="output-response-item">
+                      <h2 className="identifier-for-text">Gpt: </h2>
+                      <h2 className="item-text">
+                        {IOGPTRequest.outputs[index]
+                          .split(" ")
+                          .map((word, index) => (
+                            <span
+                              key={index}
+                              onClick={() => handleClickWord(word)}
+                            >
+                              {word}
+                            </span>
+                          ))}
+                      </h2>
+                    </div>
                   </div>
-                  <div className="output-response-item">
-                    <h2 className="identifier-for-text">Gpt: </h2>
-                    <h2 className="item-text">
-                      {IOGPTRequest.outputs[index]
-                        .split(" ")
-                        .map((word, index) => (
-                          <span
-                            key={index}
-                            onClick={() => handleClickWord(word)}
-                            style={{ margin: "0 2.1px" }}
-                          >
-                            {word}
-                          </span>
-                        ))}
-                    </h2>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div className="gpt-text-input-card">
-              <textarea placeholder="Enter a request... "></textarea>
-            </div>
-          </div>
-          <div className="gpt-selected-words-container">
-            <div className="selected-words-header">
-              <h1>Selected words</h1>
-            </div>
-            <div>
-              <ul>
-                {selectedWords.map((word, index) => (
-                  <li className="selected-words-li" key={index}>
-                    {word}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <button>Add to collection</button>
+              <textarea placeholder="Enter a story request... "></textarea>
             </div>
           </div>
         </div>
