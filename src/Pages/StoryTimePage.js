@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import Searchbar from "../Components/Flashcard-Components/Searchbar";
 function StoryTimePage() {
   const [IOGPTRequest, setIOGPTRequest] = useState({
     inputs: [
@@ -30,8 +30,7 @@ function StoryTimePage() {
     }
   };
 
-  const [selectedCollection, setSelectedCollection] =
-    useState("test collection");
+  const [selectedCollection, setSelectedCollection] = useState({});
 
   return (
     <>
@@ -39,13 +38,12 @@ function StoryTimePage() {
         <div className="story-time-container">
           <div className="gpt-selection-container-words-container">
             <div className="gpt-select-collection-container">
-              <div className="select-collection-container-header">
-                <h1>Select a Collection</h1>
+              <div>
+                <Searchbar setSelectedCollection={setSelectedCollection} />
               </div>
-              <div>search</div>
               <div className="selected-collection-card">
-                <h2>Selected collection: </h2>
-                <h2>{selectedCollection}</h2>
+                <h2>Collection Selected: </h2>
+                <h2>{selectedCollection.title}</h2>
               </div>
             </div>
             <div className="gpt-selected-words-container">
