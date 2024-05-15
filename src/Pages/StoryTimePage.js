@@ -24,6 +24,12 @@ function StoryTimePage() {
 
   const [selectedWords, setSelectedWords] = useState([]);
 
+  const deleteWord = (wordIdx) => {
+    setSelectedWords((currentWords) =>
+      currentWords.filter((_, i) => i !== wordIdx)
+    );
+  };
+
   const handleClickWord = (word) => {
     if (!selectedWords.includes(word)) {
       setSelectedWords([...selectedWords, word]);
@@ -51,13 +57,14 @@ function StoryTimePage() {
                 <h1>Selected Words</h1>
               </div>
               <div className="selected-words-list-card">
-                <ul>
+                <div className="selected-words-container">
                   {selectedWords.map((word, index) => (
-                    <li className="selected-words-li" key={index}>
-                      {word}
-                    </li>
+                    <div className="selected-words-item" key={index}>
+                      <div className="selected-item-word">{word}</div>
+                      <div id="x-mark-icon" onClick={() => deleteWord(index)} />
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="selected-words-add-button-card">
                 <button>Add to a Collection</button>
