@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Searchbar from "../Components/Flashcard-Components/Searchbar";
+import axios from "axios";
+
 function StoryTimePage() {
   const [IOGPTRequest, setIOGPTRequest] = useState({
     inputs: [
@@ -20,6 +22,20 @@ function StoryTimePage() {
     ],
   });
 
+  const [gptInputRequest, setGptInputRequest] = useState("");
+
+  const [uiState, setUIState] = useState({
+    sendRequestIcon: false,
+  });
+
+  useEffect(() => {
+    if (gptInputRequest == "") {
+      setUIState({ sendRequestIcon: false });
+    } else {
+      setUIState({ sendRequestIcon: true });
+    }
+  }, [gptInputRequest]);
+
   // Handle selecting words
 
   const [selectedWords, setSelectedWords] = useState([]);
@@ -37,6 +53,24 @@ function StoryTimePage() {
   };
 
   const [selectedCollection, setSelectedCollection] = useState({});
+
+  const testGPTResponse = () => {
+    const data = {
+      username: localStorage.getItem("username") || "",
+      inputRequest: gptInputRequest,
+      collection: selectedCollection,
+    };
+    console.log("send request?: ");
+
+    axios
+      .post("http://localhost:8080/api/v1/gpt/requestGPT", data)
+      .then((response) => {
+        console.log("Gpt request sent successfully!");
+      })
+      .catch((error) => {
+        console.log(`An error occured: ${error}`);
+      });
+  };
 
   return (
     <>
@@ -101,7 +135,17 @@ function StoryTimePage() {
               </div>
             </div>
             <div className="gpt-text-input-card">
-              <textarea placeholder="Enter a story request... "></textarea>
+              <textarea
+                placeholder="Enter a story request... "
+                value={gptInputRequest}
+                onChange={(e) => setGptInputRequest(e.target.value)}
+              />
+              <div
+                id={`${
+                  uiState.sendRequestIcon ? "send-icon" : "send-icon-lightgrey"
+                }`}
+                onClick={() => testGPTResponse()}
+              />
             </div>
           </div>
         </div>

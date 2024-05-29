@@ -43,7 +43,7 @@ function Searchbar({ setSelectedCollection }) {
       <div className="searchbar-component-container">
         <input
           type="text"
-          placeholder="Search your collections"
+          placeholder="Search collections..."
           onChange={handleSearch}
           value={collectionSearch}
         />

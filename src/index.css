@@ -1494,6 +1494,33 @@ body {
   color: white;
 }
 
+#send-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url("../public/images/whitesend-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35px 35px;
+}
+
+#send-icon:hover {
+  width: 50px;
+  height: 50px;
+  background-image: url("../public/images/greysend-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35px 35px;
+}
+
+#send-icon-lightgrey {
+  width: 50px;
+  height: 50px;
+  background-image: url("../public/images/lightgreysend-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35px 35px;
+}
+
 .gpt-selection-container-words-container {
   width: 20%;
   min-height: calc(100vh - 70px);
@@ -1563,10 +1590,13 @@ body {
   max-height: calc(100vh - 428px);
   height: 100%;
   width: 70%;
-  padding-left: 15%;
-  padding-right: 15%;
+  margin-left: 15%;
+  margin-right: 15%;
   text-align: start;
   overflow-y: auto;
+  background: #3e596d;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .selected-words-container {
